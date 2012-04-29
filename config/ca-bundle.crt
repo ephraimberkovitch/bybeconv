@@ -1,0 +1,108 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+  <meta http-equiv="content-type"
+ content="text/html; charset=ISO-8859-1">
+  <title>certifie.com: ca-bundle info</title>
+  <meta name="author" content="Barry Levinson">
+  <meta name="description"
+ content="Information on the ca-bundle.crt file, and how to build a new one.">
+</head>
+<body style="color: rgb(0, 0, 0); background-color: rgb(204, 102, 0);"
+ link="#000099" vlink="#990099" alink="#000099">
+<h1 style="text-align: center;">ca-bundle.crt</h1>
+<h2 style="text-align: center;">Information on obtaining or building a
+ca-bundle.crt file</h2>
+<h3>What is ca-bundle.crt?</h3>
+ca-bundle.crt is a file that contains well known root CAcertificates.(<a
+ href="http://www.itsecurity.com/asktecs/may2301.htm">What is a root CA?</a>)<br>
+<br>
+<h3>What is it used for?</h3>
+It is used by <a href="http://www.openssl.org/">openssl</a> to validate
+certificates issued by well known root CAs. &nbsp;It is also used by any
+third party applications that use openssl, and some that don't.<br>
+<br>
+<h3>Why do I need to get ca-bundle.crt here/Why do I need to build it
+myself? &nbsp;Why isn't it provided by (insert your tool here)
+developers?</h3>
+It was originally produced by Netscape. &nbsp;However, after version
+4.x, Netscape no longer uses the ca-bundle.crt format. &nbsp;3rd party
+products (like openssl) still <span style="font-weight: bold;">do </span>use
+it. &nbsp;Most of the versions of ca-bundle.crt floating around the net
+are very old.<br>
+<br>
+In any case, you may feel safer building it yourself. &nbsp;Building it
+yourself lets you decide what root CAs you want to trust.<br>
+<br>
+<h3>Forget about building it myself, where can I get a pre-built copy?</h3>
+Here's one I buiilt using Mozilla's NSS library v3.7 built-in "Builtin
+Roots Module" : <a href="/ca-bundle/ca-bundle.crt.txt">ca-bundle.crt<br>
+</a><br>
+SHA1 sum : 0498c8ef0fa22f241cd2bcc4b27b71714f39348c<br>
+MD5 sum :&nbsp;&nbsp; 83e2ea55aeb9fc9578554decfb0ec5f6<br>
+<a href="/ca-bundle/ca-bundle.crt.txt"> <br>
+</a>
+<h3>How do I go about building ca-bundle.crt myself?</h3>
+First, you'll need a bunch of root CA certificates that you trust :)<br>
+<br>
+I recommend getting Mozilla's list. &nbsp;Its destributed in their NSS
+sourcecode. &nbsp;Here are the steps/code to produce ca-bundle.crt from
+NSS code :<br>
+<br>
+The following instructions have been tried on Mandrake linux 8.2<br>
+<br>
+<ol>
+  <li>Download Mozilla's NSS code : <a
+ href="http://www.mozilla.org/projects/security/pki/nss/nss-3.7.1/nss-3.7.1-release-notes.html">nss
+3.7 release notes</a></li>
+  <li>Download <a href="/ca-bundle/dumpCerts.java">dumpCerts.java</a>
+and&nbsp;<a href="/ca-bundle/create_bundle.sh">create_bundle.sh</a> from
+certifie.com.</li>
+  <li>build dumpCerts.java</li>
+  <ul>
+    <li>use jss33.jar from NSS<br>
+    </li>
+    <li>javac -classpath jss33.jar dumpCerts.java</li>
+  </ul>
+  <li>Install a Mozilla browser.<br>
+  </li>
+  <li>run dumpCerts.java</li>
+  <ul>
+    <li>Set LD_LIBRARY_PATH to the directory where you have put NSS.
+&nbsp;it should point to a directory that has nss/lib under it.</li>
+    <li>run : java -classpath .:jss33.jar dumpCerts
+$HOME/.mozilla/default/&lt;user dir&gt;.slt/ &nbsp; ca-bundle.crt</li>
+  </ul>
+  <li>That's it.</li>
+</ol>
+<h3>I've got some special CA certs not included by Mozilla that I wan't
+to add to ca-bundle.crt. &nbsp;How can I add them?</h3>
+You can use&nbsp;<a
+ href="http://www.certifie.com/ca-bundle/create_bundle.sh">create_bundle.sh</a>.
+&nbsp;It is called by dumpCerts.java to build the ca-bundle.crt file
+from NSS data. &nbsp;It may also be run stand-alone and its output
+appended to ca-bundle.crt. &nbsp;You may also want to cut and paste its
+output into ca-bundle.crt to keep it alphabetized properly (if your
+picky).<br>
+<br>
+<h3>What license is your code distributed under? &nbsp;Can I use it for
+commercial uses?</h3>
+You may use the two files&nbsp; <a
+ href="http://www.certifie.com/ca-bundle/dumpCerts.java">dumpCerts.java</a>
+and&nbsp; &nbsp;<a
+ href="http://www.certifie.com/ca-bundle/create_bundle.sh">create_bundle.sh</a>
+however you'd like, although I make no claims that they will function
+correctly. &nbsp;Use them at your own risk. &nbsp;<br>
+<br>
+The file&nbsp;<a
+ href="http://www.certifie.com/ca-bundle/ca-bundle.crt.txt">ca-bundle.crt</a><a
+ href="file:///ca-bundle/ca-bundle.crt"></a> is provided here under the
+assumption that it is data/facts and may be used freely by anyone who
+wishes to use it.<br>
+<br>
+<h3>I have some additional questions. &nbsp;How may I contact you to
+ask them?<br>
+</h3>
+You can contact me at : <a href="mailto:questions@certifie.com">questions@certifie.com</a><br>
+</body>
+</html>

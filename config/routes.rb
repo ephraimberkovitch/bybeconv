@@ -1,15 +1,42 @@
 Bybeconv::Application.routes.draw do
-  get "html_file/analyze"
 
-  get "html_file/analyze_all"
+#match '/auth/:provider/callback', :to => 'sessions#create'
+#match '/auth/:provider/callback', :to => 'sessions#authenticate_admin'
+#match '/auth/failure' => 'sessions#auth_failure'
 
-  get "html_file/list"
-  post "html_file/list"
-  get "html_file/parse"
-  get "html_file/render_html"
-  get "html_file/chop1"
-  get "html_file/chop2"
-  get "html_file/chop3"
+match "/signin" => "auth_services#signin"
+match "/signout" => "auth_services#signout"
+
+match '/auth/:service/callback' => 'auth_services#create' 
+match '/auth/failure' => 'auth_services#failure'
+
+  resources :auth_services, :only => [:index, :create, :destroy] do
+    collection do
+      get 'signin'
+      get 'signout'
+      get 'signup'
+      post 'newaccount'
+      get 'failure'
+    end
+  end
+  resources :users, :only => [:index] do
+    collection do
+      get 'test'
+    end
+  end
+root :to => 'html_file#list'
+get "html_file/analyze"
+get "html_file/analyze_all"
+get "html_file/list"
+post "html_file/list"
+get "html_file/parse"
+get "html_file/render_html"
+get "html_file/chop1"
+get "html_file/chop2"
+get "html_file/chop3"
+
+    #resources :users
+    # etc.
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

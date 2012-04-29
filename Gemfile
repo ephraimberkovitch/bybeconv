@@ -41,6 +41,17 @@ gem 'rpeg-multimarkdown'
 #gem 'ruby-debug19', :require => 'ruby-debug'
 
 gem 'app_constants' # anything more Railsy?
+gem 'omniauth' # for multi-provider authentication
+#gem 'omniauth-google' # for multi-provider authentication
+gem 'omniauth-facebook' # for multi-provider authentication
+#gem 'omniauth-browserid' # for multi-provider authentication
+#gem 'omniauth-github' # for multi-provider authentication
+gem 'omniauth-github', :git => 'git://github.com/intridea/omniauth-github.git'
+gem 'omniauth-openid', :git => 'git://github.com/intridea/omniauth-openid.git'
+
+
+#gem 'omniauth-twitter' # for multi-provider authentication
+#gem 'omniauth-yahoo' # for multi-provider authentication
 
 group :test do
   # Pretty printed test output

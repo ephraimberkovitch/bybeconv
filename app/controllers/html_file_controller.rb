@@ -1,4 +1,6 @@
 class HtmlFileController < ApplicationController
+#  before_filter :admin_required # authentication AND adminship required to do anything at the HTML file level
+
   def analyze
     @text = HtmlFile.find(params[:id])
     @text.analyze

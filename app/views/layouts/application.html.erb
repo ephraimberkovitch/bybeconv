@@ -8,8 +8,40 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
+<section id="head">
+    <section id="user">
+        <% if user_signed_in? %>
+            <nav id="nav_user">
+                <ul>
+                    <span><%= current_user.email %></span>
+                    <li><%= link_to "Settings", auth_services_path %>
+                    <li><%= link_to "Sign out", signout_auth_services_path %></li>
+                </ul>
+            </nav>
+        <% else %>
+            <nav id="nav_user">
+                <ul>
+                    <span>Sign in with:</span>
+                    <li><%= link_to "Facebook", "/auth/facebook" %></li>
+                    <li><%= link_to "Google", "/auth/google" %></li>
+                    <li><%= link_to "Yahoo", "/auth/yahoo" %>
+                    <li><%= link_to "benyehuda.org", "/auth/benyehuda" %>
+                    <li><%= link_to "Other", signin_auth_services_path %>
+                </ul>
+            </nav>
+        <% end %>
+    </section>
 
-<%= yield %>
+</section>
 
+<section id="body">
+    <section id="flash">
+        <% flash.each do |key, value| %>
+            <div class="flash <%= key %> round"><%= value %></div>
+        <% end %>
+    </section>
+
+    <%= yield %>
+</section>
 </body>
 </html>

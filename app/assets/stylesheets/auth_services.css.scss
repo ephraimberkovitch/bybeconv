@@ -1,0 +1,38 @@
+// Place all the styles related to the auth_auth_services controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+/* navigation */
+nav { text-align: right; font-size: 12px; }
+nav ul { padding: 0; margin: 0; list-style: none; } 
+nav ul span { margin-right: 20px; }
+nav ul li { padding: 0; margin: 0 20px 0 0; display:inline; }
+nav li a { width: 100px; text-align: center; text-decoration: none; }
+nav ul li.selected a { color: #c81419; }
+
+/* auth_services - views: signin, signup and index of service controller */
+/* ---------------------------------------------------------------- */
+.auth_services { margin: 0; padding: 0; }
+
+/* signin */
+#auth_services_signin div { overflow:auto; margin-bottom: 40px; }
+
+/* signup: create new account */
+#auth_services_new {}
+#auth_services_new input { margin-right: 20px; }
+#auth_services_new div { background-color: #dddddd; padding: 20px; margin-bottom: 40px; }
+
+/* manage your auth_services */
+#auth_services_manage {}
+
+.service_in_use { background-color: #dddddd; height: 64px; width: 300px; margin-bottom: 10px; padding: 5px; }
+.service_img { float: left; }
+.service_userdata { font-size: 12px; line-height: 1.1em; margin-left: 80px; padding-top: 6px;}
+.service_userdata span { color: #c81419; }
+
+#auth_services_available { clear: both; margin-top: 40px; }
+
+/* the list with the available auth_services that consist of icons and text */
+#auth_services_list { margin: 20px 0; padding: 0; list-style: none; }
+#auth_services_list li { display: inline; float: left; margin-right: 25px; margin-bottom: 20px; width: 100px; text-align: center; }
+#auth_services_list img { display: block; margin-left: auto; margin-right: auto; }
