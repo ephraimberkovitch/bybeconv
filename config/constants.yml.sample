@@ -3,6 +3,10 @@
 development: &default
   base_dir:  "/home/me/my_dev_data"
   populate_exclude: "w3c;img"
+  facebook_appid: "FB_APP_ID"
+  facebook_secret: "FB_SECRET"
+  github_appid: "GH_APP_ID"
+  github_secret: "GH_SECRET"
 
 production:
   <<: *default
